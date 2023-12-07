@@ -1,0 +1,12 @@
+{
+  "name": "my-bot-niaraa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Niara Afriyie <G00280068@stu.raritanval.edu> (https://github.com/niaraa)",
+  "license": "MIT"
+}
