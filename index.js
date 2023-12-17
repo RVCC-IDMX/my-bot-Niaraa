@@ -37,7 +37,8 @@ client.on(Events.InteractionCreate, async (interaction) => {
   const command = interaction.client.commands.get(interaction.commandName);
 
   if (!command) {
-    await interaction.reply({ content: 'Secret Pong!', ephemeral: true });
+    console.error(`No command matching ${interaction.commandName} was found.`);
+    return;
   }
 
   try {
