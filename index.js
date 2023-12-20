@@ -1,9 +1,18 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-unused-labels */
+/* eslint-disable no-labels */
+/* eslint-disable no-restricted-globals */
+/* eslint-disable import/newline-after-import */
+/* eslint-disable no-multiple-empty-lines */
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 /* eslint-disable global-require */
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable no-restricted-syntax */
 const fs = require('node:fs');
 const path = require('node:path');
 const {
+  EmbedBuilder,
   Client, Collection, Events, GatewayIntentBits,
 } = require('discord.js');
 const { token } = require('./config.json');
@@ -33,6 +42,29 @@ client.once(Events.ClientReady, (readyClient) => {
 });
 
 client.on(Events.InteractionCreate, async (interaction) => {
+  if (interaction.isButton) {
+    console.log('i am a button');
+    const exampleEmbed = new EmbedBuilder()
+      .setColor(0x0099FF)
+      .setTitle('Some title')
+      .setURL('https://discord.js.org/')
+      .setAuthor({ name: 'Some name', iconURL: 'https://i.imgur.com/AfFp7pu.png', url: 'https://discord.js.org' })
+      .setDescription('Some description here')
+      .setThumbnail('https://i.imgur.com/AfFp7pu.png')
+      .addFields(
+        { name: 'Regular field title', value: 'Some value here' },
+        { name: '\u200B', value: '\u200B' },
+        { name: 'Inline field title', value: 'Some value here', inline: true },
+        { name: 'Inline field title', value: 'Some value here', inline: true },
+      )
+      .addFields({ name: 'Inline field title', value: 'Some value here', inline: true })
+      .setImage('https://i.imgur.com/AfFp7pu.png')
+      .setTimestamp()
+      .setFooter({ text: 'Some footer text here', iconURL: 'https://i.imgur.com/AfFp7pu.png' });
+
+    interaction.channel.send({ embeds: [exampleEmbed] });
+    return;
+  }
   if (!interaction.isChatInputCommand()) return;
   const command = interaction.client.commands.get(interaction.commandName);
 
